@@ -22,5 +22,7 @@ export async function getAll() {
 // it's only provided here to remind you to follow
 // RESTful routing, etc.
 export async function getById(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
+    const response = await sendRequest(`${BASE_URL}/${id}`)
+    console.log('RUSPONSE', response)
+    return response
 }

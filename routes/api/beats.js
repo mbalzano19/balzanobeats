@@ -4,7 +4,7 @@ const beatsCtrl = require('../../controllers/api/beats')
 
 router.get('/', beatsCtrl.index)
 
-// router.get('/details/:id', beatsCtrl.show);
+router.get('/:id', beatsCtrl.show);
 
 router.post('/new', beatsCtrl.create)
 

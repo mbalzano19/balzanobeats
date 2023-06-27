@@ -31,9 +31,8 @@ export default function BeatCard({name, genre, tempo, songKey, description, pric
 // }
 
 return (
-    <Link to={`${id}`} className="beat-card">
-
-          <div className="card" key={id}>
+    
+    <div className="card" key={id}>
             <p className="card-title">Name: {name}</p>
             <p className="card-info">Genre: {genre}</p>
             <p className="card-info">Tempo: {tempo}</p>
@@ -41,11 +40,16 @@ return (
             <p className="card-info">Description: {description}</p>
             <p className="card-info">Price: {price}</p>
             <p className="card-info">Category: {category}</p>
-            <a href={`/beats/${id}`}>Details</a>
-          </div>
-            {/* <BeatDetail name={name}/> */}
+
+            <Link to={{ pathname: `/beats/${id}`, state: { genre: 'genre' } }} className="beat-card">Details
+            {/* <a href={`/beats/${id}`}>Details</a> */}
+            </Link>
+            {/* <BeatDetail genre={genre}/> */}
+    </div>
 
 
-      </Link>
+
+        // <BeatDetail tempo={tempo}/>
+
     )}
 

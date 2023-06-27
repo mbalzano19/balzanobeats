@@ -2,7 +2,7 @@ require('dotenv').config();
 require('./config/database');
 
 const Category = require('./models/category');
-const Item = require('./models/beat');
+const Beat = require('./models/beat');
 
 // IIFE
 // Immediately Invoked Function Expression
@@ -17,6 +17,12 @@ const Item = require('./models/beat');
     {name: 'DnB', sortOrder: 60},
     {name: 'Afro', sortOrder: 70},
     {name: 'Ambient', sortOrder: 80},
+  ]);
+
+  await Beat.deleteMany({});
+  const beats = await Beat.create([
+    {name: 'Squad', genre: 'Drill', tempo: 140, key: 'A minor', description: 'up-tempo drill beat', price: 49.99, category: categories[0]},
+    {name: 'Let Go', genre: 'Drill', tempo: 148, key: 'B minor', description: 'emotional drill beat', price: 49.99, category: categories[1]},
   ]);
 
   process.exit();

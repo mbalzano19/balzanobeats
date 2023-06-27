@@ -1,17 +1,20 @@
 import { useState, useEffect, useRef } from 'react'
 import { checkToken } from '../../utilities/users-service'
 import { Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as beatsAPI from '../../utilities/beats-api';
 import * as categoriesAPI from '../../utilities/categories-api';
 import BeatDetail from '../../components/BeatDetail/BeatDetail';
 import './BeatPage.css';
 import BeatCard from '../../components/BeatCard/BeatCard';
+import NewOrderPage from '../App/NewOrderPage/NewOrderPage';
 
 
 export default function BeatPage({ user }) {
   // console.log('beatpage prop', user)
 
   const [beats, setBeats] = useState([]);
+  const { id } = useParams();
   const [categories, setCategories] = useState([]);
   const categoriesRef = useRef([]);
 
@@ -24,12 +27,12 @@ export default function BeatPage({ user }) {
           // console.log('respnse', response)
           setBeats(response)
 
-          const categoryIds = [...new Set(response.map((beat) => beat.category))]
-          console.log('catIDS', categoryIds)
+          // const categoryIds = [...new Set(response.map((beat) => beat.category))]
+          // console.log('catIDS', categoryIds)
 
-          const categoryResponse = await categoriesAPI.getAll(categoryIds)
-          setCategories(categoryResponse)
-          console.log('CATRESPONSE', categoryResponse)
+          // const categoryResponse = await categoriesAPI.getAll(categoryIds)
+          // setCategories(categoryResponse)
+          // console.log('CATRESPONSE', categoryResponse)
 
 
 
@@ -133,6 +136,9 @@ console.log('beats in BeatPage', beats)
         {/* <BeatCard beats={beats}/> */}
         {/* <BeatDetail beats={beats} /> */}
 
+          {/* <NewOrderPage beats={beats}/> */}
+
+        {/* <Link to={`/beat/${id}`} state={{ beats: "beats" }}> */}
         <div>
           {beats.map((beat) => 
             <BeatCard
@@ -143,10 +149,15 @@ console.log('beats in BeatPage', beats)
                 songKey={beat.key}
                 description={beat.description}
                 price={beat.price}
-                category={beat.category}
+                category={beat.category.name}
+                
             />
-          )}
+            )}
         </div>
+
+
+        {/* </Link> */}
+            {/* <BeatDetail beats={beats}/> */}
 
     </>
   );

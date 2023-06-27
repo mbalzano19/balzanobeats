@@ -47,7 +47,7 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
-    const beats = await Beat.find({})
+    const beats = await Beat.find({}).populate('category')
     // const category = await Category.findOne({ name: req.category });
     // console.log('beats in controllers', beats)
     // console.log('beats in controllers', Object.name)

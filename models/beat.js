@@ -4,4 +4,4 @@ require('./category');
 
 const beatSchema = require('./beatSchema');
 
-module.exports = mongoose.model('beat', beatSchema);
+module.exports = mongoose.model('Beat', beatSchema);
