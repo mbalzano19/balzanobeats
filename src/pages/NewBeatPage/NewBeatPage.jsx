@@ -18,7 +18,7 @@ export default function NewBeatPage(props) {
   // console.log('props in newBeatPage', props)
     return (
       <>
-      <h1>Add those beats BOI ahhhhaaaa</h1>
+      <h1>Add those beats </h1>
       <NewBeatForm />
       </>
     )

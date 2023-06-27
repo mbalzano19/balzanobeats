@@ -5,10 +5,13 @@ import NewBeatPage from '../NewBeatPage/NewBeatPage'
 import AuthPage from '../AuthPage/AuthPage'
 import BeatPage from '../BeatPage/BeatPage'
 import NavBar from '../../components/NavBar/NavBar'
+import BeatDetailPage from '../BeatDetailPage/BeatDetailPage'
+import BeatDetail from '../../components/BeatDetail/BeatDetail'
 import { getUser } from '../../utilities/users-service'
 
 export default function App() {
   const [user, setUser] = useState(getUser())
+  
 
   return (
    <main className="App">
@@ -18,6 +21,7 @@ export default function App() {
         <Routes>
           <Route path='/beats/new' element={<NewBeatPage />} />
           <Route path='/beats' element={<BeatPage user={user}/>} />
+          <Route path='/beats/:id' element={<BeatDetail user={user}/>} />
         </Routes>
       </>
         : 

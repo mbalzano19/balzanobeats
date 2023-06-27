@@ -60,7 +60,7 @@ async function index(req, res) {
   }
   
   async function show(req, res) {
-    const item = await Beat.findById(req.params.id);
+    const beat = await Beat.findById(req.params.id);
     res.json(beat);
   }
 

@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { checkToken } from '../../utilities/users-service'
+import { Link, useNavigate } from 'react-router-dom';
 import * as beatsAPI from '../../utilities/beats-api';
 import * as categoriesAPI from '../../utilities/categories-api';
+import BeatDetail from '../../components/BeatDetail/BeatDetail';
 import './BeatPage.css';
+import BeatCard from '../../components/BeatCard/BeatCard';
+
 
 export default function BeatPage({ user }) {
   // console.log('beatpage prop', user)
@@ -80,31 +84,80 @@ export default function BeatPage({ user }) {
   //   });
   // }
 
-
+console.log('beats in BeatPage', beats)
   
+//   return (
+//     <>
+//       <h1>Beats</h1>
+//       <div>
+//         {beats.length === 0 ? (
+//           <p>Loading beats...</p>
+//         ) : (
+          
+
+//           // <div className="card-container">
+//           //   {beats.map((beat, index) => (
+//           //     <div className="card" key={beat._id}>
+//           //       <p className="card-title">{beat.name}</p>
+//           //       <p className="card-info">{beat.genre}</p>
+//           //       <p className="card-info">{beat.tempo}</p>
+//           //       <p className="card-info">{beat.key}</p>
+//           //       <p className="card-info">{beat.description}</p>
+//           //       <p className="card-info">{beat.price}</p>
+//           //       <p className="card-info">Category: {beat.category}</p>
+//                 {/* <Link
+//                     to={{
+//                       pathname: `/beats/details/${beat._id}`,
+//                       // state: { beat: beat, user: user }
+//                     }}
+//                     className="button btn-sm"
+//                   >
+//                     View
+//                   </Link> */}
+//                   // <BeatDetailPage beats={beats}/>
+//               </div>
+//             // ))}
+//           // </div>
+//         // )}
+//         <BeatCard beats={beats}/>
+//       </div>
+//     </>
+//   );
+// }
+
   return (
     <>
-      <h1>BeatsBOI</h1>
-      <div>
-        {beats.length === 0 ? (
-          <p>Loading beats...</p>
-        ) : (
-          <div className="card-container">
-            {beats.map((beat, index) => (
-              <div className="card" key={index}>
-                <p className="card-title">{beat.name}</p>
-                <p className="card-info">{beat.genre}</p>
-                <p className="card-info">{beat.tempo}</p>
-                <p className="card-info">{beat.key}</p>
-                <p className="card-info">{beat.description}</p>
-                <p className="card-info">{beat.price}</p>
-                <p className="card-info">Category: {beat.category}</p>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <h1>Beats</h1>
+
+
+        {/* <BeatCard beats={beats}/> */}
+        {/* <BeatDetail beats={beats} /> */}
+
+        <div>
+          {beats.map((beat) => 
+            <BeatCard
+                id={beat._id}
+                name={beat.name}
+                genre={beat.genre}
+                tempo={beat.tempo}
+                songKey={beat.key}
+                description={beat.description}
+                price={beat.price}
+                category={beat.category}
+            />
+          )}
+        </div>
+
     </>
   );
 }
+
+// <p className="card-title">{beat.name}</p>
+// <p className="card-info">{beat.genre}</p>
+// <p className="card-info">{beat.tempo}</p>
+// <p className="card-info">{beat.key}</p>
+// <p className="card-info">{beat.description}</p>
+// <p className="card-info">{beat.price}</p>
+// <p className="card-info">Category: {beat.category}</p>
+// <a href={`/beats/details/${beat._id}`}>Details</a>
   
