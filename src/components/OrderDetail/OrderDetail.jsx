@@ -45,6 +45,10 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
     const copyCart = cart.beatItems.map((item) => ({ ...item }));
     const foundBeatItemIndex = copyCart.findIndex((item) => item._id === itemId);
     copyCart[foundBeatItemIndex].qty -= 1;
+
+    if (copyCart[foundBeatItemIndex].qty === 0) {
+      copyCart.splice(foundBeatItemIndex, 1);
+    }
   
     const finalCart = { ...cart, beatItems: copyCart };
     setCart(finalCart);
@@ -52,6 +56,8 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
     const updatedItem = finalCart.beatItems[foundBeatItemIndex]
     const updatedPrice = updatedItem.qty * itemPrice
     calculateCartPrice(finalCart)
+
+    
 
     // setCartPrice(updatedPrice)
   }
