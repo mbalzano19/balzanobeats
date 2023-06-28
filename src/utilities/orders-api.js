@@ -16,8 +16,8 @@ export function addItemToCart(beatId) {
 // Update the item's qty in the cart
 // Will add the item to the order if not currently in the cart
 // Sending info via the data payload instead of a long URL
-export function setItemQtyInCart(beatId, newQty) {
-  return sendRequest(`${BASE_URL}/cart/qty`, 'PUT', { beatId, newQty });
+export function setItemQtyInCart(cartId, beatId, newQty) {
+  return sendRequest(`${BASE_URL}/cart/${cartId}/${beatId}/qty`, 'PUT', { cartId, beatId, newQty });
 }
 
 // Updates the order's (cart's) isPaid property to true

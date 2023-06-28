@@ -9,6 +9,6 @@ router.post('/cart/beats/:id', ordersCtrl.addToCart);
 // POST /api/orders/cart/checkout
 router.post('/cart/checkout', ordersCtrl.checkout);
 // POST /api/orders/cart/qty
-router.put('/cart/qty', ordersCtrl.setItemQtyInCart);
+router.put('/cart/:cartId/:beatId/qty', ordersCtrl.setItemQtyInCart);
 
 module.exports = router;

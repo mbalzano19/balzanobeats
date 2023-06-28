@@ -25,7 +25,8 @@ const beatSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        // default: 99
     },
     url: {
         type: String,

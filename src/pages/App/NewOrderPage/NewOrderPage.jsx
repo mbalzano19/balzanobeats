@@ -28,17 +28,19 @@ export default function NewOrderPage({ beat, currentPage }) {
     async function handleAddToOrder(beatId) {
       alert(`Add item: ${beat.name}`);
       const updatedCart = await ordersAPI.addItemToCart(beatId);
-      console.log('UPDATEDCARTBOI', updatedCart.beatItems)
+      console.log('UPDATEDCART', updatedCart.beatItems)
     //   updatedCart.beatItems.forEach((item) => {
     //     item.extPrice = item.qty * item.price;
     //   });
       setCart(updatedCart);
     }
   
-    async function handleChangeQty(beatId, newQty) {
-      const updatedCart = await ordersAPI.setItemQtyInCart(beatId, newQty);
+    async function handleChangeQty(cartId, beatId, newQty) {
+      const updatedCart = await ordersAPI.setItemQtyInCart(cartId, beatId, newQty);
+      console.log('handleChangeQuantity', updatedCart)
       setCart(updatedCart);
     }
+
   
     async function handleCheckout() {
       await ordersAPI.checkout();
