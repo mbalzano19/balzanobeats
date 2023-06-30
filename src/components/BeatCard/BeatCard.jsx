@@ -43,9 +43,9 @@ return (
             {/* <p className="card-info">Price: {price}</p> */}
             {/* <a href={url} className="card-info">Url</a> */}
             <p className="card-text">Category: {category}</p>
-            <p className="card-text"><button>Play
+            {/* <p className="card-text"><button>Play
                 <audio src={url}></audio>
-            </button></p>
+            </button></p> */}
             <Link to={{ pathname: `/beats/${id}`, state: { genre: 'genre' } }} className="card-details">Details
 
             {/* <a href={`/beats/${id}`}>Details</a> */}

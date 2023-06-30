@@ -40,7 +40,7 @@ const currentPage = location.pathname;
       <>
         <NavBar user={user} setUser={setUser} />
         <Routes>
-          <Route path='/beats/new' element={<NewBeatPage />} />
+          <Route path='/new' element={<NewBeatPage />} />
           <Route path='/beats' element={<BeatPage user={user}/>} />
           <Route path='/beats/:id' element={<BeatDetail user={user} />} />
           <Route path='/orders/new' element={<NewOrderPage  beat={beats} currentPage={currentPage}/>} />

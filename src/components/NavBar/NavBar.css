@@ -1,0 +1,32 @@
+.nav-link,
+.navbar-brand {
+  color: white;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .navbar-brand:hover {
+  color: #18b15d; /* Change the color to your desired hover color */
+}
+
+.navbar-nav .nav-link.active {
+  color: #18b15d; /* Change the color to your desired active color */
+}
+
+.nav-link.active-link {
+    color: #18b15d;
+  }
+  
+.navbar-brand.active-link {
+      color: #18b15d;
+    }
+
+
+    .navbar-brand {
+        color: white;
+      }
+      
+      .navbar-brand:hover,
+      .navbar-brand:active,
+      .navbar-brand:focus {
+        color: #18b15d; /* Change the color to your desired hover/active color */
+      }

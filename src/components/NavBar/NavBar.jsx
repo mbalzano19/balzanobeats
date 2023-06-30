@@ -1,54 +1,62 @@
-import { Link } from 'react-router-dom'
-import * as userService from '../../utilities/users-service'
-import './NavBar.css'
+import { NavLink } from 'react-router-dom';
+import * as userService from '../../utilities/users-service';
+import './NavBar.css';
 
 export default function NavBar({ user, setUser }) {
-    // console.log('this is setUser in nav', setUser)
-    function handleLogOut() {
-        // delete the token from storage
-        userService.logOut()
-        // set the user to null
-        setUser(null)
-    }
-    return(
-        <div className='navcontainer'>
-<nav className="navbar navbar-expand-md bg-body-tertiary" style={{ background: "linear-gradient(180deg, #1F4066 0%, rgba(36, 122, 222, 0.00) 100%" }}>
-    
+  function handleLogOut() {
+    userService.logOut();
+    setUser(null);
+  }
 
+  return (
+    <div className="navcontainer">
+      <nav className="navbar navbar-expand-md" style={{}}>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link to="/" className="navbar-brand">BalzanoBeats</Link>
-          </li>
-          </ul>
-            <div className="navbar-collapse justify-content-end">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link to="/beats" className="nav-link">Beats</Link>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link"> | </span>
-          </li>
-          <li className="nav-item">
-            <Link to="/beats/new" className="nav-link">Add Beats</Link>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link"> | </span>
-          </li>
-          <li className="nav-item">
-            <Link to="/orders/new" className="nav-link">Cart</Link>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link"> | </span>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link">Welcome, {user.name}</span>
-          </li>
-          <li className="nav-item">
-            <span className="nav-link"><Link to="" onClick={handleLogOut}>Log Out</Link></span>
+            <NavLink exact to="/" className="navbar-brand" activeClassName="active-link">
+              BalzanoBeats
+            </NavLink>
           </li>
         </ul>
-      </div>
-        </nav>
+        <div className="navbar-collapse justify-content-end">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink exact to="/beats" className="nav-link" activeClassName="active-link">
+                Beats
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <span className="nav-link"> | </span>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/new" className="nav-link" activeClassName="active-link">
+                Add Beats
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <span className="nav-link"> | </span>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/orders/new" className="nav-link" activeClassName="active-link">
+                Cart
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <span className="nav-link"> | </span>
+            </li>
+            <li className="nav-item">
+              <span className="nav-link">Welcome, {user.name}</span>
+            </li>
+            <li className="nav-item">
+              <span className="nav-link">
+                <NavLink to="" onClick={handleLogOut}>
+                  Log Out
+                </NavLink>
+              </span>
+            </li>
+          </ul>
         </div>
-    )
+      </nav>
+    </div>
+  );
 }
