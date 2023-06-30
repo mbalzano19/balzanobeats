@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import BeatDetail from "../BeatDetail/BeatDetail"
+import './BeatCard.css';
 
-export default function BeatCard({name, genre, tempo, songKey, description, price, category, id,}) {
+export default function BeatCard({name, genre, tempo, songKey, description, price, category, id, url, coverArt}) {
     console.log('BEATCARD ID', id)
     // console.log('beatcard props', beats)
 //     return (
@@ -31,20 +32,27 @@ export default function BeatCard({name, genre, tempo, songKey, description, pric
 // }
 
 return (
-    
-    <div className="card" key={id}>
-            <p className="card-title">Name: {name}</p>
-            <p className="card-info">Genre: {genre}</p>
-            <p className="card-info">Tempo: {tempo}</p>
-            <p className="card-info">Key: {songKey}</p>
-            <p className="card-info">Description: {description}</p>
-            <p className="card-info">Price: {price}</p>
-            <p className="card-info">Category: {category}</p>
+    <div className="card shadow  card-containers" key={id}>
+        <div style={{"background": `url(${coverArt}) no-repeat center center`, "WebkitBackgroundSize": "cover"}} className="beat-card">
+            <div >
+            <p className="card-title">{name}</p>
+            <p className="card-text">{genre}</p>
+            <p className="card-text">{tempo} bpm</p>
+            <p className="card-text">{songKey}</p>
+            {/* <p className="card-info">Description: {description}</p> */}
+            {/* <p className="card-info">Price: {price}</p> */}
+            {/* <a href={url} className="card-info">Url</a> */}
+            <p className="card-text">Category: {category}</p>
+            <p className="card-text"><button>Play
+                <audio src={url}></audio>
+            </button></p>
+            <Link to={{ pathname: `/beats/${id}`, state: { genre: 'genre' } }} className="card-details">Details
 
-            <Link to={{ pathname: `/beats/${id}`, state: { genre: 'genre' } }} className="beat-card">Details
             {/* <a href={`/beats/${id}`}>Details</a> */}
             </Link>
             {/* <BeatDetail genre={genre}/> */}
+            </div>
+    </div>
     </div>
 
 

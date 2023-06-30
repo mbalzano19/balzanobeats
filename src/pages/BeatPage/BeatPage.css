@@ -1,14 +1,18 @@
 .card-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
   
-  .card {
+  .beat-card {
     background-color: #f0f0f0;
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
     width: 200px;
+    height: 400px;
+
+
   }
   
   .card-title {
@@ -19,3 +23,4 @@
   .card-info {
     color: gray;
   }
+

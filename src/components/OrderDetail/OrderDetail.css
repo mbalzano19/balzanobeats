@@ -1,0 +1,15 @@
+.ordercontainer {
+    color: yellow;
+    margin-top: 50px;
+    
+}
+
+.cartheader {
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+.ordertotal {
+    align-items: right;
+    
+}

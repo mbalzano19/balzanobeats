@@ -139,7 +139,7 @@ console.log('beats in BeatPage', beats)
           {/* <NewOrderPage beats={beats}/> */}
 
         {/* <Link to={`/beat/${id}`} state={{ beats: "beats" }}> */}
-        <div>
+        <div className='card-container'>
           {beats.map((beat) => 
             <BeatCard
                 id={beat._id}
@@ -148,8 +148,10 @@ console.log('beats in BeatPage', beats)
                 tempo={beat.tempo}
                 songKey={beat.key}
                 description={beat.description}
+                url={beat.url}
                 price={beat.price}
                 category={beat.category.name}
+                coverArt={beat.coverArt}
                 
             />
             )}

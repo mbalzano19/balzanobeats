@@ -32,6 +32,10 @@ const beatSchema = new Schema({
         type: String,
         default: ''
     },
+    coverArt: {
+        type: String,
+        default: ''
+    },
     category: {type: Schema.Types.ObjectId, ref: 'Category'},
     // user: {
     //     type: Schema.Types.ObjectId,

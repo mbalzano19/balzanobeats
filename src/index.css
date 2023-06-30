@@ -24,6 +24,10 @@ body {
   background-color: var(--tan-4);
   padding: 2vmin;
   height: 100vh;
+  font-family: monospace;
+  /* font-family: Krona One; */
+  background: linear-gradient(180deg, #1E4E85 0%, rgba(0, 0, 0, 0.00) 100%);
+  ;
 }
 
 code {

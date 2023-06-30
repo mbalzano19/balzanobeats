@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import BeatItem from "../BeatItem/BeatItem";
 import * as ordersAPI from '../../utilities/orders-api';
 import * as beatsAPI from '../../utilities/beats-api';
+import './OrderDetail.css'
 
 export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
   const { id } = useParams();
@@ -53,8 +54,7 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
     const finalCart = { ...cart, beatItems: copyCart };
     setCart(finalCart);
 
-    const updatedItem = finalCart.beatItems[foundBeatItemIndex]
-    const updatedPrice = updatedItem.qty * itemPrice
+
     calculateCartPrice(finalCart)
 
     
@@ -88,36 +88,88 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
   // console.log('cart right before orderDetail return', cart.isPaid)
   console.log('cart right before orderDetail return', cart)
   return (
-    <div className="OrderDetail">
-      {cart && cart.beatItems && cart.beatItems.length > 0 ? (
-        cart.beatItems.map((item) => (
-          <div key={item.id}>
-            {/* Render the details of each item */}
-            <p>Name: {item.beat.name}</p>
-            <p>Qty: {item.qty}</p>
-            <p>Price: ${item.qty * item.beat.price.toFixed(2)}.00</p>
-            <div className="qty" style={{ justifyContent: cart.isPaid && 'center' }}>
-              {!cart.isPaid &&
-              <button
-                className="btn-xs"
-                onClick={() => handleClientChangeQtyMinus(cart._id, item._id, item.qty - 1, item.beat.price)}
-              >−</button>
-            }
-            <span>{cart.beatItems.qty}</span>
-            {!cart.isPaid &&
-              <button
-                className="btn-xs"
-                onClick={() => handleClientChangeQtyPlus(cart._id, item._id, item.qty + 1, item.beat.price)}
-              >+</button>
-            }
-          </div>
-          </div>
-        ))
-        ) : (
-          <p>No items in the cart.</p>
-          )}
-          <p>Order Total: ${cartPrice.toFixed(2)}</p>
-    </div> 
+    <>
+      <h1 className="cartheader">Cart</h1>
+      <div className="ordercontainer">
+        <div className="OrderDetail shadow-sm p-3 mb-5 bg-dark">
+          <table className="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th>Beat:</th>
+                {/* <th>Licenses:</th> */}
+                <th>Update Licenses:</th>
+                <th>Price:</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart && cart.beatItems && cart.beatItems.length > 0 ? (
+                cart.beatItems.map((item) => (
+                  <tr key={item.id}>
+                    {/* Render the details of each item */}
+                    <td>
+                      <p className="beatName">{item.beat.name}</p>
+                    </td>
+                    {/* <td>
+                      <p>{item.qty}</p>
+                    </td> */}
+
+                    <td>
+                      <div
+                        className="qty"
+                        style={{ justifyContent: cart.isPaid && 'center' }}
+                      >
+                        {!cart.isPaid && (
+                          <button
+                            className="btn-xs"
+                            onClick={() =>
+                              handleClientChangeQtyMinus(
+                                cart._id,
+                                item._id,
+                                item.qty - 1,
+                                item.beat.price
+                              )
+                            }
+                          >
+                            −
+                          </button>
+                        )}
+                        <span>{item.qty}</span>
+                        {!cart.isPaid && (
+                          <button
+                            className="btn-xs"
+                            onClick={() =>
+                              handleClientChangeQtyPlus(
+                                cart._id,
+                                item._id,
+                                item.qty + 1,
+                                item.beat.price
+                              )
+                            }
+                          >
+                            +
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                    <td>
+                      <p>${item.qty * item.beat.price.toFixed(2)}.00</p>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3">No items in the cart.</td>
+                </tr>
+              )}
+            <tr>
+              <td colSpan="2" style={{ textAlign: 'right' }}>Order Total:</td>
+              <td style={{ textAlign: 'center' }}>${cartPrice.toFixed(2)}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
   );
-}
+              }
 
