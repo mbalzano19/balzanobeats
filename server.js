@@ -25,6 +25,7 @@ const port = process.env.PORT || 3001;
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/beats', require('./routes/api/beats'))
 app.use('/api/orders', require('./routes/api/orders'))
+// app.use('/api/upload', require('./routes/api/upload'))
 // app.use('/api/categories', require('./routes/api/categories'))
 
 

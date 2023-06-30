@@ -91,13 +91,14 @@ const handleTogglePlay = () => {
     <>
     <div className='detail-container'>
       <div style={{"background": `url(${beat.coverArt}) no-repeat center center`, "WebkitBackgroundSize": "cover"}} className="detail-card">
-      <h1>{beat.name}</h1>
       {/* <p>Name: {beat.name}</p> */}
-      <p>Genre: {beat.genre}</p>
-      <p>Tempo: {beat.tempo}</p>
-      <p>Key: {beat.key}</p>
-      <p>Price: {beat.price}</p>
-      <p>Category: {beat.category}</p>
+        <button
+          className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}
+          onClick={handleTogglePlay}
+          >
+          {isPlaying ? "Pause" : "Play"}
+      <h1 className='title'>{beat.name}</h1>
+        </button>
       </div>
       </div>
       <div className="audio-player">
@@ -113,13 +114,13 @@ const handleTogglePlay = () => {
             // onMouseUp={handleSeekMouseUp}
             />
         </div>
+            <p>Name: {beat.name}</p>
+            <p>Genre: {beat.genre}</p>
+            <p>Tempo: {beat.tempo}</p>
+            <p>Key: {beat.key}</p>
+            <p>Price: {beat.price}</p>
+            <p>Category: {beat.category}</p>
         <p>Description: {beat.description}</p>
-        <button
-          className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}
-          onClick={handleTogglePlay}
-          >
-          {isPlaying ? "Pause" : "Play"}
-        </button>
       </div>
       <audio
         ref={audioRef}

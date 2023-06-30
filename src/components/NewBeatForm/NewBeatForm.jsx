@@ -10,8 +10,12 @@ export default function NewBeatForm() {
     key: '',
     description: '',
     price: 0,
+    url: '',
+    coverArt: '',
     category: 'Hip Hop',
   });
+  const [audio, setAudio] = useState()
+  const [image, setImage] = useState()
 
   const [categories, setCategories] = useState([]);
 
@@ -42,6 +46,15 @@ export default function NewBeatForm() {
       ...formData,
       [event.target.name]: event.target.value,
     });
+    console.log('FORMDATA IN NEWBEATFORM', formData)
+    const setUrl = formData.url
+    setAudio({ setUrl })
+    console.log('audio after formdata', audio)
+    const setCoverArt = formData.coverArt
+    setImage({ setCoverArt })
+    console.log('COVERARTSET', image)
+
+
   }
 // console.log('formdata before try', formData)
   async function addBeat(evt) {
@@ -49,6 +62,10 @@ export default function NewBeatForm() {
 
     try {
       const response = await axios.post('/api/beats/new', formData);
+    //   const audioFile = await axios.post('/api/beats/upload', formData.url)
+    //   console.log('audioFILE POST', audioFile)
+    //   const imageFile = await axios.post('/api/upload', formData.coverArt)
+    //   console.log('imageFILE POST', imageFile)
     //   console.log('form data', formData)
     //   console.log('Beat added:', response.data);
       // Reset the form
@@ -59,6 +76,8 @@ export default function NewBeatForm() {
         key: '',
         description: '',
         price: 0,
+        url: '',
+        coverArt: '',
         category: 'Hip Hop',
       });
     } catch (error) {
@@ -87,6 +106,11 @@ export default function NewBeatForm() {
                 <input type="text" name="description" value={formData.description} onChange={handleInputChange} required />
                 <label>Price</label>
                 <input type="number" name="price" value={formData.price} onChange={handleInputChange} required />
+                <label>Upload beat:</label>
+                <input type="file" name="url" value={formData.url} onChange={handleInputChange} required />
+                <label>Upload Cover Art:</label>
+                <input type="file" name="coverArt" value={formData.coverArt} onChange={handleInputChange} required />
+
                 {/* <label>Category</label>
                 <input type="text" name="category" value={formData.category} onChange={handleInputChange} required /> */}
                 <label>Category</label>

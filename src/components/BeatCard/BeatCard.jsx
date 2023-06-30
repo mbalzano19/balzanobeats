@@ -36,6 +36,7 @@ return (
         <div style={{"background": `url(${coverArt}) no-repeat center center`, "WebkitBackgroundSize": "cover"}} className="beat-card">
             <div >
             <p className="card-title">{name}</p>
+
             <p className="card-text">{genre}</p>
             <p className="card-text">{tempo} bpm</p>
             <p className="card-text">{songKey}</p>
@@ -46,10 +47,11 @@ return (
             {/* <p className="card-text"><button>Play
                 <audio src={url}></audio>
             </button></p> */}
-            <Link to={{ pathname: `/beats/${id}`, state: { genre: 'genre' } }} className="card-details">Details
+            <Link to={{ pathname: `/beats/${id}`, state: { genre: 'genre' } }} className="card-details">View Beat
 
             {/* <a href={`/beats/${id}`}>Details</a> */}
             </Link>
+
             {/* <BeatDetail genre={genre}/> */}
             </div>
     </div>

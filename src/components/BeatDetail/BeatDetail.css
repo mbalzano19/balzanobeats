@@ -10,6 +10,8 @@
   .play-pause-button.playing {
     background-color: #4caf50;
     color: #fff;
+
+
   }
   
   .play-pause-button.paused {
@@ -21,5 +23,20 @@
 
 .detail-card {
     height: 500px;
+
+
+
+
+}
+
+/* p {
+    opacity: .6;
+}
+
+h1 {
+    opacity: .6;
+} */
+
+.title {
 
 }
