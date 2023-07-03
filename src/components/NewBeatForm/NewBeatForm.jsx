@@ -27,15 +27,14 @@ export default function NewBeatForm() {
       ...formData,
       [event.target.name]: event.target.value,
     });
-    console.log('FORMDATA IN NEWBEATFORM', formData)
-    const setUrl = formData.url
-    setAudio({ setUrl })
-    console.log('audio after formdata', audio)
-    const setCoverArt = formData.coverArt
-    setImage({ setCoverArt })
-    console.log('COVERARTSET', image)
-
-
+  
+    if (event.target.name === "url") {
+      setAudio(event.target.files[0]);
+    }
+  
+    if (event.target.name === "coverArt") {
+      setImage(event.target.files[0]);
+    }
   }
 // console.log('formdata before try', formData)
   async function addBeat(evt) {
@@ -63,7 +62,7 @@ export default function NewBeatForm() {
           .upload({
             Bucket: bucketName,
             Key: newAudioKey,
-            Body: audioFile,
+            Body: audio,
             ACL: 'public-read',
           })
           .promise();
@@ -111,6 +110,8 @@ export default function NewBeatForm() {
           coverArt: '',
           category: 'Hip Hop',
         });
+        setAudio('');
+        setImage('');
 
 
 
