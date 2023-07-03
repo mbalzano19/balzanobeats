@@ -24,6 +24,8 @@ async function create(req, res) {
             key: req.body.key,
             description: req.body.description,
             price: req.body.price,
+            url: req.body.url,
+            coverArt: req.body.coverArt,
             category: category._id,
             userId: req.user_id
         })

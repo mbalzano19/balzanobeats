@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import * as categoriesAPI from '../../utilities/categories-api';
+import AWS from 'aws-sdk'
 
 export default function NewBeatForm() {
   const [formData, setFormData] = useState({
@@ -19,27 +20,7 @@ export default function NewBeatForm() {
 
   const [categories, setCategories] = useState([]);
 
-//   useEffect(() => {
-//     // Fetch the categories from the backend and set them in state
-//     axios.get('/api/categories')
-//       .then(response => {
-//         setCategories(response.data);
-//       })
-//       .catch(error => {
-//         console.error('Error fetching categories:', error);
-//       });
-//   }, []);
 
-//   useEffect(() => {
-//     // Fetch the categories from the backend and set them in state
-//     axios.get('/api/categories')
-//       .then(response => {
-//         setCategories(response.data);
-//       })
-//       .catch(error => {
-//         console.error('Error fetching categories:', error);
-//       });
-//   }, []);
 
   function handleInputChange(event) {
     setFormData({
@@ -61,7 +42,81 @@ export default function NewBeatForm() {
     evt.preventDefault();
 
     try {
-      const response = await axios.post('/api/beats/new', formData);
+        // Configure AWS SDK
+        AWS.config.update({
+          accessKeyId: 'AKIA2JNXEQL57AFPQ345',
+          secretAccessKey: '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',
+          region: 'us-east-1',
+        });
+  
+        const s3 = new AWS.S3();
+        const bucketName = 'balzanobeats';
+        const audioFile = formData.url; // File object from input field
+        const imageFile = formData.coverArt; // File object from input field
+  
+        // Upload audio file to S3
+        const audioKey = `beats/${audioFile}`;
+        console.log('AUDIOKEY', audioKey)
+        const newAudioKey = audioKey.replace("C:\\fakepath\\", "");
+        console.log('NEWAUDIOKEY AFTER REPLACE', newAudioKey)
+        await s3
+          .upload({
+            Bucket: bucketName,
+            Key: newAudioKey,
+            Body: audioFile,
+            ACL: 'public-read',
+          })
+          .promise();
+  
+        // Upload image file to S3
+        const imageKey = `cover-art/${imageFile}`;
+        const newImageKey = imageKey.replace("C:\\fakepath\\", "");
+        await s3
+          .upload({
+            Bucket: bucketName,
+            Key: newImageKey,
+            Body: imageFile,
+            ACL: 'public-read',
+          })
+          .promise();
+  
+        // Create the beat object to send to the backend
+        const beatData = {
+          name: formData.name,
+          genre: formData.genre,
+          tempo: formData.tempo,
+          key: formData.key,
+          description: formData.description,
+          price: formData.price,
+          url: newAudioKey,
+          coverArt: newImageKey,
+          category: formData.category,
+        };
+        console.log('URL in beatData', audioKey)
+  
+        // Send the beat data to the backend API
+        const response = await axios.post('/api/beats/new', beatData);
+        console.log('Beat added:', response.data);
+        console.log('beatURL,', beatData.url)
+  
+        // Reset the form
+        setFormData({
+          name: '',
+          genre: '',
+          tempo: 0,
+          key: '',
+          description: '',
+          price: 0,
+          url: '',
+          coverArt: '',
+          category: 'Hip Hop',
+        });
+
+
+
+
+
+    //   const response = await axios.post('/api/beats/new', formData);
     //   const audioFile = await axios.post('/api/beats/upload', formData.url)
     //   console.log('audioFILE POST', audioFile)
     //   const imageFile = await axios.post('/api/upload', formData.coverArt)

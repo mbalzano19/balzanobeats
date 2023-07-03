@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 // import * as beatsAPI from '../../utilities/beats-api';
 import { Link, useNavigate } from 'react-router-dom';
-import * as ordersAPI from '../../../utilities/orders-api';
-import * as beatsAPI from '../../../utilities/beats-api';
-import OrderDetail from "../../../components/OrderDetail/OrderDetail";
+import * as ordersAPI from '../../utilities/orders-api';
+import * as beatsAPI from '../../utilities/beats-api';
+import OrderDetail from "../../components/OrderDetail/OrderDetail";
 
 export default function NewOrderPage({ beat, currentPage }) {
     const { id } = useParams();

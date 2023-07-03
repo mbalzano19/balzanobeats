@@ -7,7 +7,7 @@ import * as categoriesAPI from '../../utilities/categories-api';
 import BeatDetail from '../../components/BeatDetail/BeatDetail';
 import './BeatPage.css';
 import BeatCard from '../../components/BeatCard/BeatCard';
-import NewOrderPage from '../App/NewOrderPage/NewOrderPage';
+import NewOrderPage from '../NewOrderPage/NewOrderPage';
 
 
 export default function BeatPage({ user }) {
@@ -23,7 +23,8 @@ export default function BeatPage({ user }) {
   useEffect(() => {
       const fetchBeats = async () => {
         try {
-          const response = await beatsAPI.getAll(user._id)
+          const response = await beatsAPI.getAll()
+          // const response = await beatsAPI.getAll(user._id) 
           // console.log('respnse', response)
           setBeats(response)
 
