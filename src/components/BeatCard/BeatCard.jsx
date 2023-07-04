@@ -1,9 +1,15 @@
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from "react-router-dom"
 import BeatDetail from "../BeatDetail/BeatDetail"
 import './BeatCard.css';
+import AWS from 'aws-sdk';
 
-export default function BeatCard({name, genre, tempo, songKey, description, price, category, id, url, coverArt}) {
+export default function BeatCard({ beat, name, genre, tempo, songKey, description, price, category, id, url, coverArt}) {
     console.log('BEATCARD ID', id)
+
+    // const [beat, setBeat] = useState(null);
+    const [image, setImage] = useState('');
+
     // console.log('beatcard props', beats)
 //     return (
 //         <div>
@@ -31,9 +37,50 @@ export default function BeatCard({name, genre, tempo, songKey, description, pric
 //     )
 // }
 
+useEffect(() => {
+    if (!beat) return;
+
+    const getImageUrl = async () => {
+      try {
+        const s3 = new AWS.S3({
+            accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+            region: process.env.REACT_APP_AWS_REGION,
+        });
+
+        const bucketName = 'balzanobeats';
+        const key = beat.coverArt;
+
+        const params = {
+          Bucket: bucketName,
+          Key: key,
+          Expires: 3600,
+        };
+
+        const image = await s3.getSignedUrlPromise('getObject', params);
+        setImage(image);
+      } catch (error) {
+        console.error('Error retrieving object URL:', error);
+      }
+    };
+
+    getImageUrl();
+  }, [beat]);
+
+  console.log('IMAGE IN BEAT CARD', image)
+
+
+
 return (
     <div className="card shadow  card-containers" key={id}>
-        <div style={{"background": `url(${coverArt}) no-repeat center center`, "WebkitBackgroundSize": "cover"}} className="beat-card">
+      <div
+        className="beat-card"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
             <div >
             <p className="card-title">{name}</p>
 

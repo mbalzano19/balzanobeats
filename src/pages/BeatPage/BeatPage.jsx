@@ -153,6 +153,7 @@ console.log('beats in BeatPage', beats)
                 price={beat.price}
                 category={beat.category.name}
                 coverArt={beat.coverArt}
+                beat={beat}
                 
             />
             )}

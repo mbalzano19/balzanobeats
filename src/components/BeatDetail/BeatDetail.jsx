@@ -12,6 +12,7 @@ export default function BeatDetail({ user }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [url, setUrl] = useState('');
+  const [image, setImage] = useState('');
   const audioRef = useRef(null);
   const location = useLocation();
 
@@ -95,6 +96,38 @@ export default function BeatDetail({ user }) {
     getObjectUrl();
   }, [beat]);
 
+  useEffect(() => {
+    if (!beat) return;
+
+    const getImageUrl = async () => {
+      try {
+        const s3 = new AWS.S3({
+            accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+            region: process.env.REACT_APP_AWS_REGION,
+        });
+
+        const bucketName = 'balzanobeats';
+        const key = beat.coverArt;
+
+        const params = {
+          Bucket: bucketName,
+          Key: key,
+          Expires: 3600,
+        };
+
+        const image = await s3.getSignedUrlPromise('getObject', params);
+        setImage(image);
+      } catch (error) {
+        console.error('Error retrieving object URL:', error);
+      }
+    };
+
+    getImageUrl();
+  }, [beat]);
+
+  console.log('IMAGE URL', image)
+
   if (!beat) {
     return <p>Loading...</p>;
   }
@@ -104,7 +137,14 @@ export default function BeatDetail({ user }) {
   return (
     <>
     <div className='detail-container'>
-      <div style={{"background": `url(${beat.coverArt}) no-repeat center center`, "WebkitBackgroundSize": "cover"}} className="detail-card">
+      <div
+        className="detail-card"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
       {/* <p>Name: {beat.name}</p> */}
         <button
           className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}

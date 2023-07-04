@@ -43,9 +43,9 @@ export default function NewBeatForm() {
     try {
         // Configure AWS SDK
         AWS.config.update({
-          accessKeyId: 'AKIA2JNXEQL57AFPQ345',
-          secretAccessKey: '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',
-          region: 'us-east-1',
+          accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+          region: process.env.REACT_APP_AWS_REGION,
         });
   
         const s3 = new AWS.S3();
@@ -74,7 +74,7 @@ export default function NewBeatForm() {
           .upload({
             Bucket: bucketName,
             Key: newImageKey,
-            Body: imageFile,
+            Body: image,
             ACL: 'public-read',
           })
           .promise();
