@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { signUp } from '../../utilities/users-service'
+import { useNavigate } from 'react-router-dom';
 // we need to export our class components just like always
 // one of the key differences between classes and function components is the extends keyword
 // This tells our code "get all the good stuff from Componenet, but let me make it work for my purposes"
@@ -7,14 +8,15 @@ export default class SignUpForm extends Component {
     // Class components handle state differently than functions
     // instead of hooks, we use the class field called state
     state = {
-        name: '',
-        email: '',
-        password: '',
-        confirm: '',
-        error: ''
-
+      name: '',
+      email: '',
+      password: '',
+      confirm: '',
+      error: ''
+      
     }
-
+    
+    
     // handleChange method -> handles user input in the form
     // looks at the name of the input field, and updates the value associated with that input field in state
     handleChange = (evt) => {
@@ -46,7 +48,7 @@ export default class SignUpForm extends Component {
     // every single class component NEEDS a render method
     // This render method tells our app what this component returns
     render() {
-      const disable = this.state.password !== this.state.confirm;
+      const disable = this.state.password !== this.state.confirm
       return (
         <div>
           <div className="form-container">
@@ -64,6 +66,6 @@ export default class SignUpForm extends Component {
           </div>
           <p className="error-message">&nbsp;{this.state.error}</p>
         </div>
-      );
+      )
     }
   }

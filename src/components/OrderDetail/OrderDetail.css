@@ -1,52 +1,39 @@
-/* .ordercontainer {
-    color: yellow;
-    margin-top: 50px;
-    
-} */
-
 .cartheader {
     margin-top: 30px;
     font-size: 40px;
 }
 
-/* .ordertotal {
-    align-items: right;
-    
-} */
-
 .OrderDetail {
     background-color: #f2f2f2;
     padding: 20px;
-  }
+}
   
-  .OrderDetail table {
+.OrderDetail table {
     width: 100%;
     border-collapse: collapse;
-  }
+}
   
-  .OrderDetail th,
-  .OrderDetail td {
+.OrderDetail th,
+.OrderDetail td {
     padding: 10px;
-    /* text-align: left; */
     padding-top: 20px;
-    /* margin-top: 20px; */
-  }
+}
   
-  .OrderDetail th {
+.OrderDetail th {
     background-color: #333;
     color: #fff;
-  }
+}
   
-  .OrderDetail tr:nth-child(even) {
+.OrderDetail tr:nth-child(even) {
     background-color: #ddd;
-  }
+}
   
-  .OrderDetail .qty {
+.OrderDetail .qty {
     display: flex;
     align-items: center;
-  }
+}
   
-  .OrderDetail .btn-xs {
+.OrderDetail .btn-xs {
     background-color: #333;
     color: #fff;
     border: none;
@@ -54,23 +41,23 @@
     margin: 0 5px;
     font-size: 12px;
     cursor: pointer;
-  }
+}
   
-  .OrderDetail .btn-xs:hover {
+.OrderDetail .btn-xs:hover {
     background-color: #555;
-  }
+}
   
-  .OrderDetail .beatName {
+.OrderDetail .beatName {
     margin: 0;
-  }
+}
   
-  .OrderDetail .total {
+.OrderDetail .total {
     font-weight: bold;
     text-align: right;
-  }
+}
   
-  .OrderDetail .qty {
+.OrderDetail .qty {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}

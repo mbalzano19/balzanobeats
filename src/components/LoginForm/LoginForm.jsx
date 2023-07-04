@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { login } from '../../utilities/users-service'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function LoginForm({ setUser }) {
 
     const [credentials, setCredentials] = useState({ email: '', password: '' })
     const [error, setError] = useState('')
+
+    const navigate = useNavigate()
 
     function handleChange(evt) {
         // this.setState({
@@ -19,11 +22,12 @@ export default function LoginForm({ setUser }) {
     // handleSubmit
     async function handleSubmit(evt) {
         evt.preventDefault()
-
+        
         try {
             const user = await login(credentials)
             console.log('credentials in login', credentials)
             setUser(user)
+            navigate('/')
         } catch {
             // handle our errors
             // this.setState({ error: 'Sign Up Failed - Try Again'})
