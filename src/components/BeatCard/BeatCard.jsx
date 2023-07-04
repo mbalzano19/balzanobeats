@@ -14,9 +14,9 @@ useEffect(() => {
     const getImageUrl = async () => {
       try {
         const s3 = new AWS.S3({
-            accessKeyId: REACT_APP_AWS_ACCESS_KEY_ID,
-            secretAccessKey: REACT_APP_AWS_SECRET_ACCESS_KEY,
-            region: REACT_APP_AWS_REGION,
+            accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+            region: process.env.REACT_APP_AWS_REGION,
         })
 
         const bucketName = 'balzanobeats'
