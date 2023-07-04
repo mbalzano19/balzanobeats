@@ -9,9 +9,9 @@ require('./config/database')
 const AWS = require('aws-sdk');
 
 AWS.config.update({
-  region: 'us-east-1', // Set your desired AWS region
-  accessKeyId: 'AKIA2JNXEQL57AFPQ345', // Set your AWS access key ID
-  secretAccessKey: 'gQiTYd+P/SlT9aaZT1SJ/mC3Tp/nYqXLBeZ0kgGF' // Set your AWS secret access key
+  region: process.env.REACT_APP_AWS_REGION, // Set your desired AWS region
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID, // Set your AWS access key ID
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY // Set your AWS secret access key
 });
    
 const app = express();
@@ -38,8 +38,7 @@ const port = process.env.PORT || 3001;
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/beats', require('./routes/api/beats'))
 app.use('/api/orders', require('./routes/api/orders'))
-// app.use('/api/upload', require('./routes/api/upload'))
-// app.use('/api/categories', require('./routes/api/categories'))
+
 
 
 // The following "catch all" route (note the *) is necessary
