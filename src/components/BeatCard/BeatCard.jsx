@@ -19,7 +19,8 @@ useEffect(() => {
         })
 
         const bucketName = 'balzanobeats'
-        const key = beat.coverArt
+        const folderPath = 'cover-art/'
+        const key = folderPath + beat.coverArt
 
         const params = {
           Bucket: bucketName,
