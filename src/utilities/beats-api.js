@@ -11,6 +11,6 @@ export async function getAll() {
     return sendRequest(BASE_URL)
   }
 
-  export async function show() {
-    return sendRequest(`${BASE_URL}/id`)
+  export async function show(id) {
+    return sendRequest(`${BASE_URL}/${id}`)
   }

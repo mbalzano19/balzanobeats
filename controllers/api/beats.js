@@ -39,8 +39,9 @@ async function create(req, res) {
 
 async function index(req, res) {
     const beats = await Beat.find({}).populate('category')
+    console.log('beats in index function', beats)
     const categories = await Category.find({Object})
-    console.log('object print', categories[1].name)
+    console.log('categories in index function', categories)
     res.json(beats)
   }
   

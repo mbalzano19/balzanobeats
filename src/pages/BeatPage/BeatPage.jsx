@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import * as beatsAPI from '../../utilities/beats-api'
 import './BeatPage.css'
 import BeatCard from '../../components/BeatCard/BeatCard'
