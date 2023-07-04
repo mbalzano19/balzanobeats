@@ -20,7 +20,7 @@ app.use(express.json());
 
  // Configure both serve-favicon & static middleware
  // to serve from the production 'build' folder
-app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 // middleware to check and verify a JWT
