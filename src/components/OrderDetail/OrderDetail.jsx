@@ -165,11 +165,12 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
               <td colSpan="2" style={{ textAlign: 'right' }}>Order Total:</td>
               <td style={{ textAlign: 'center' }}>${cartPrice.toFixed(2)}</td>
             </tr>
+            <button>Checkout</button>
             </tbody>
           </table>
         </div>
       </div>
     </>
   );
-              }
+}
 

@@ -19,11 +19,13 @@ async function create(req, res) {
         // const categoryId = await Category.findById(req.body.category)
         const beat = new Beat({
             name: req.body.name,
-            genre: req.body.genre,
+            artist: req.body.artist,
             tempo: req.body.tempo,
             key: req.body.key,
             description: req.body.description,
             price: req.body.price,
+            url: req.body.url,
+            coverArt: req.body.coverArt,
             category: category._id,
             userId: req.user_id
         })

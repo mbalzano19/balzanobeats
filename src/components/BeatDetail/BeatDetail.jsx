@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import * as beatsAPI from '../../utilities/beats-api';
-import * as categoriesAPI from '../../utilities/categories-api'
-import { useLocation } from 'react-router-dom';
-import NewOrderPage from '../../pages/App/NewOrderPage/NewOrderPage';
+import AWS from 'aws-sdk';
+import NewOrderPage from '../../pages/NewOrderPage/NewOrderPage';
 import './BeatDetail.css';
 
 
-
-export default function BeatDetail({genre}) {
-    console.log("GENRE", genre)
+export default function BeatDetail({ user }) {
   const { id } = useParams();
-  const [beat, setBeat] = useState();
+  const [beat, setBeat] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [isSeeking, setIsSeeking] = useState(false);
+  const [url, setUrl] = useState('');
+  const [image, setImage] = useState('');
   const audioRef = useRef(null);
+  const location = useLocation();
 
-//   let location = useLocation()
-//   console.log('uselocation', location.state.genre)
-
-const location = useLocation();
-const currentPage = location.pathname;
-console.log("CURRENTPAGETHINGBEAAAAT", currentPage)
-
-const handleTogglePlay = () => {
+  const handleTogglePlay = () => {
     const audioElement = audioRef.current;
+    if (!audioElement || !url) return;
+
     if (audioElement.paused) {
-      audioElement.play();
-      setIsPlaying(true);
+      const playPromise = audioElement.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((error) => {
+            console.error('Play promise error:', error);
+          });
+      }
     } else {
       audioElement.pause();
       setIsPlaying(false);
@@ -42,35 +43,21 @@ const handleTogglePlay = () => {
   };
 
   const handleSeek = (e) => {
-    const audioElement = audioRef.current;
     const seekTime = parseFloat(e.target.value);
-    audioElement.currentTime = seekTime;
     setCurrentTime(seekTime);
+    audioRef.current.currentTime = seekTime;
   };
-
-//   const handleSeekMouseDown = () => {
-//     setIsSeeking(true);
-//   };
-
-//   const handleSeekMouseUp = () => {
-//     setIsSeeking(false);
-//   };
 
   useEffect(() => {
     const fetchBeat = async () => {
       try {
         const response = await beatsAPI.getAll(id);
-        const beatArray = response.find(beat => beat._id === id);
-        console.log('cover art beat', beatArray.coverArt)
-
-        // const catResponse = await categoriesAPI.getById(beat.category)
-
-        // console.log('CATREPONSEEE', beatArray.category)
-        const setBeatWithCategory = {...beatArray, category: beatArray.category.name};
-        console.log('setbeatwithcategory', setBeatWithCategory)
+        const beatArray = response.find((beat) => beat._id === id);
+        const setBeatWithCategory = {
+          ...beatArray,
+          category: beatArray.category.name,
+        };
         setBeat(setBeatWithCategory);
-        console.log('response in detail', beatArray)
-
       } catch (error) {
         console.error('Error fetching beat:', error);
       }
@@ -79,25 +66,93 @@ const handleTogglePlay = () => {
     fetchBeat();
   }, [id]);
 
-  
+  useEffect(() => {
+    if (!beat) return;
 
-//   console.log('beat cover art', beat.name)
+    const getObjectUrl = async () => {
+      try {
+        const s3 = new AWS.S3({
+            accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+            region: process.env.REACT_APP_AWS_REGION,
+        });
+
+        const bucketName = 'balzanobeats';
+        const key = beat.url;
+
+        const params = {
+          Bucket: bucketName,
+          Key: key,
+          Expires: 3600,
+        };
+
+        const url = await s3.getSignedUrlPromise('getObject', params);
+        setUrl(url);
+      } catch (error) {
+        console.error('Error retrieving object URL:', error);
+      }
+    };
+
+    getObjectUrl();
+  }, [beat]);
+
+  useEffect(() => {
+    if (!beat) return;
+
+    const getImageUrl = async () => {
+      try {
+        const s3 = new AWS.S3({
+            accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+            region: process.env.REACT_APP_AWS_REGION,
+        });
+
+        const bucketName = 'balzanobeats';
+        const key = beat.coverArt;
+
+        const params = {
+          Bucket: bucketName,
+          Key: key,
+          Expires: 3600,
+        };
+
+        const image = await s3.getSignedUrlPromise('getObject', params);
+        setImage(image);
+      } catch (error) {
+        console.error('Error retrieving object URL:', error);
+      }
+    };
+
+    getImageUrl();
+  }, [beat]);
+
+  console.log('IMAGE URL', image)
 
   if (!beat) {
     return <p>Loading...</p>;
   }
 
+  console.log('beat.url', beat.url)
+
   return (
     <>
     <div className='detail-container'>
-      <div style={{"background": `url(${beat.coverArt}) no-repeat center center`, "WebkitBackgroundSize": "cover"}} className="detail-card">
-      <h1>{beat.name}</h1>
+      <div
+        className="detail-card"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
       {/* <p>Name: {beat.name}</p> */}
-      <p>Genre: {beat.genre}</p>
-      <p>Tempo: {beat.tempo}</p>
-      <p>Key: {beat.key}</p>
-      <p>Price: {beat.price}</p>
-      <p>Category: {beat.category}</p>
+        <button
+          className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}
+          onClick={handleTogglePlay}
+          >
+          {isPlaying ? "Pause" : "Play"}
+      <h1 className='title'>{beat.name}</h1>
+        </button>
       </div>
       </div>
       <div className="audio-player">
@@ -113,25 +168,25 @@ const handleTogglePlay = () => {
             // onMouseUp={handleSeekMouseUp}
             />
         </div>
+            <p>Name: {beat.name}</p>
+            <p>Artist: {beat.artist}</p>
+            <p>Tempo: {beat.tempo}</p>
+            <p>Key: {beat.key}</p>
+            <p>Price: {beat.price}</p>
+            <p>Category: {beat.category}</p>
         <p>Description: {beat.description}</p>
-        <button
-          className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}
-          onClick={handleTogglePlay}
-          >
-          {isPlaying ? "Pause" : "Play"}
-        </button>
       </div>
       <audio
         ref={audioRef}
-        src={beat.url}
+        src={url} 
         onTimeUpdate={handleTimeUpdate}
         ></audio>
-      <audio ref={audioRef} src={beat.url}></audio>
-      <audio ref={audioRef} src={beat.url}></audio>
+
+
 
       
 
-      <NewOrderPage beat={beat} />
+      {user && <NewOrderPage beat={beat} />}
 
     </>
   );

@@ -25,33 +25,56 @@ export default function NavBar({ user, setUser }) {
                 Beats
               </NavLink>
             </li>
+            {user && (
+        <>
+    <li className="nav-item">
+      <span className="nav-link"> | </span>
+    </li>
+    <li className="nav-item">
+      <NavLink to="/new" className="nav-link" activeClassName="active-link">
+        Add Beats
+      </NavLink>
+    </li>
+        </>
+            )}
             <li className="nav-item">
               <span className="nav-link"> | </span>
             </li>
-            <li className="nav-item">
-              <NavLink to="/new" className="nav-link" activeClassName="active-link">
-                Add Beats
-              </NavLink>
-            </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
+            <NavLink to="/beats/:userId" className="nav-link" activeClassName="active-link">
+                My Beats
+            </NavLink>
+        </li>
+                    <li className="nav-item">
               <span className="nav-link"> | </span>
-            </li>
+            </li> */}
             <li className="nav-item">
-              <NavLink to="/orders/new" className="nav-link" activeClassName="active-link">
+                
+            {user ? (
+            <NavLink to="/orders/new" className="nav-link" activeClassName="active-link">
                 Cart
-              </NavLink>
+            </NavLink>
+            ) : <NavLink to='/login' className="nav-link" activeClassName="active-link">Cart</NavLink>}
+
             </li>
+
+
+
             <li className="nav-item">
               <span className="nav-link"> | </span>
             </li>
             <li className="nav-item">
-              <span className="nav-link">Welcome, {user.name}</span>
+              <span className="nav-link">{user ? `Welcome, ${user.name}` : 'Welcome'}</span>
             </li>
+
             <li className="nav-item">
               <span className="nav-link">
-                <NavLink to="" onClick={handleLogOut}>
-                  Log Out
-                </NavLink>
+
+              {user ? (
+            <NavLink to="" onClick={handleLogOut}>
+                Log Out
+            </NavLink>
+            ) : <NavLink to='/login'>Log In</NavLink>}
               </span>
             </li>
           </ul>
