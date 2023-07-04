@@ -43,7 +43,6 @@ return (
           <Route path='/' element={<HomePage />} />
           <Route path="/new" element={<NewBeatPage />} />
           <Route path="/beats" element={<BeatPage user={user} />} />
-          {/* <Route path="/beats/:userId" element={<MyBeatsPage user={user} />} /> */}
           <Route path="/beats/:id" element={<BeatDetail user={user} />} />
           <Route
             path="/orders/new"
