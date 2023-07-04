@@ -88,7 +88,7 @@ export default function NewBeatForm() {
         }
         // console.log('FORM IN beatData', beatData)
   
-        const response = await axios.post('/api/beats/new', beatData)
+        const response = await axios.post('https://balzanobeats-api.onrender.com/api/beats/new', beatData)
         // console.log('Beat added:', response.data)
         // console.log('beatURL,', beatData.url)
   
