@@ -1,7 +1,8 @@
 import axios from 'axios'
 import sendRequest from "./send-request"
 
-const BASE_URL = '/api/beat'
+// const BASE_URL = '/api/beat'
+const BASE_URL = 'https://balzanobeats-api.onrender.com/api/beat'
 
 
 export async function getCategoriesByIds(categoryIds) {

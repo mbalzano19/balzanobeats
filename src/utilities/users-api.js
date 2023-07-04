@@ -1,6 +1,7 @@
 import sendRequest from "./send-request"
 
-const BASE_URL = '/api/users'
+// const BASE_URL = '/api/users'
+const BASE_URL = 'https://balzanobeats-api.onrender.com/api/users'
 
 export async function signUp(userData) {
     return sendRequest(BASE_URL, 'POST', userData)
