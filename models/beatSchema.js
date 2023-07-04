@@ -7,7 +7,7 @@ const beatSchema = new Schema({
         type: String,
         required: true
     },
-    genre: {
+    artist: {
         type: String,
         required: true
     },

@@ -6,9 +6,11 @@ import NewBeatPage from '../NewBeatPage/NewBeatPage'
 import AuthPage from '../AuthPage/AuthPage'
 import BeatPage from '../BeatPage/BeatPage'
 import NavBar from '../../components/NavBar/NavBar'
+import HomePage from '../HomePage/HomePage';
 import BeatDetailPage from '../BeatDetailPage/BeatDetailPage'
 import BeatDetail from '../../components/BeatDetail/BeatDetail'
 import NewOrderPage from '../NewOrderPage/NewOrderPage'
+import MyBeatsPage from '../MyBeatsPage/MyBeatsPage';
 import { getUser } from '../../utilities/users-service'
 import { useLocation } from 'react-router-dom';
 
@@ -40,8 +42,10 @@ return (
       <>
         <NavBar user={user} setUser={setUser} />
         <Routes>
+          <Route path='/' element={<HomePage />} />
           <Route path="/new" element={<NewBeatPage />} />
           <Route path="/beats" element={<BeatPage user={user} />} />
+          {/* <Route path="/beats/:userId" element={<MyBeatsPage user={user} />} /> */}
           <Route path="/beats/:id" element={<BeatDetail user={user} />} />
           <Route
             path="/orders/new"
@@ -53,6 +57,7 @@ return (
       <>
         <NavBar />
         <Routes>
+          <Route path='/' element={<HomePage />} />
           <Route path="/beats" element={<BeatPage user={user} />} />
           <Route path="/beats/:id" element={<BeatDetail user={user} />} />
           <Route path="/login" element={<AuthPage setUser={setUser} />} />

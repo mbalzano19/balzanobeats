@@ -2,11 +2,12 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import * as categoriesAPI from '../../utilities/categories-api';
 import AWS from 'aws-sdk'
+import './NewBeatForm.css'
 
 export default function NewBeatForm() {
   const [formData, setFormData] = useState({
     name: '',
-    genre: '',
+    artist: '',
     tempo: 0,
     key: '',
     description: '',
@@ -82,7 +83,7 @@ export default function NewBeatForm() {
         // Create the beat object to send to the backend
         const beatData = {
           name: formData.name,
-          genre: formData.genre,
+          artist: formData.artist,
           tempo: formData.tempo,
           key: formData.key,
           description: formData.description,
@@ -91,7 +92,7 @@ export default function NewBeatForm() {
           coverArt: newImageKey,
           category: formData.category,
         };
-        console.log('URL in beatData', audioKey)
+        console.log('FORM IN beatData', beatData)
   
         // Send the beat data to the backend API
         const response = await axios.post('/api/beats/new', beatData);
@@ -101,7 +102,7 @@ export default function NewBeatForm() {
         // Reset the form
         setFormData({
           name: '',
-          genre: '',
+          artist: '',
           tempo: 0,
           key: '',
           description: '',
@@ -127,7 +128,7 @@ export default function NewBeatForm() {
       // Reset the form
       setFormData({
         name: '',
-        genre: '',
+        artist: '',
         tempo: 0,
         key: '',
         description: '',
@@ -146,14 +147,15 @@ export default function NewBeatForm() {
 
     return(
         <>
-        <h1>hey</h1>
+
         <div>
         <div className="form-container">
+            
             <form autoComplete="off" onSubmit={addBeat} >
                 <label>Name</label>
                 <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
-                <label>Genre</label>
-                <input type="text" name="genre" value={formData.genre} onChange={handleInputChange}  required />
+                <label>Artist</label>
+                <input type="text" name="artist" value={formData.artist} onChange={handleInputChange}  required />
                 <label>Tempo</label>
                 <input type="number" name="tempo" value={formData.tempo} onChange={handleInputChange} required />
                 <label>Key</label>

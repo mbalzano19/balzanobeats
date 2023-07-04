@@ -4,13 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import * as beatsAPI from '../../utilities/beats-api';
 import * as categoriesAPI from '../../utilities/categories-api';
+
 import BeatDetail from '../../components/BeatDetail/BeatDetail';
-import './BeatPage.css';
+
 import BeatCard from '../../components/BeatCard/BeatCard';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
 
 
-export default function BeatPage({ user }) {
+
+export default function MyBeatsPage({ user }) {
   // console.log('beatpage prop', user)
 
   const [beats, setBeats] = useState([]);
@@ -23,10 +24,11 @@ export default function BeatPage({ user }) {
   useEffect(() => {
       const fetchBeats = async () => {
         try {
-          const response = await beatsAPI.getAll()
+          const response = await beatsAPI.getAll(user._id)
           // const response = await beatsAPI.getAll(user._id) 
           // console.log('respnse', response)
           setBeats(response)
+          console.log('RESPONSE IN THE NEW MYBEATSPAGE', response)
 
           // const categoryIds = [...new Set(response.map((beat) => beat.category))]
           // console.log('catIDS', categoryIds)
@@ -145,7 +147,7 @@ console.log('beats in BeatPage', beats)
             <BeatCard
                 id={beat._id}
                 name={beat.name}
-                artist={beat.artist}
+                genre={beat.genre}
                 tempo={beat.tempo}
                 songKey={beat.key}
                 description={beat.description}

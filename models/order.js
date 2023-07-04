@@ -75,7 +75,7 @@ orderSchema.methods.addItemToCart = async function(beatId) {
     console.log('const cart = this', cart)
     // console.log('const cart = this', cart.beatItems[0].beat, cart.beatItems[1].beat, cart.beatItems[2].beat)
     // const beatItem = cart.beatItems.find(beatItem => beatItem.beat && beatItem.beat._id.equals(beatId));
-    const beatItem = cart.beatItems.find(beatItem => beatItem.beat._id.equals(beatId))
+    const beatItem = cart.beatItems.find(beatItem => beatItem._id.equals(beatId))
 
     console.log("BEATITEM IN ORDER MODEL", beatItem)
     console.log('beatItems length:', cart.beatItems.length);

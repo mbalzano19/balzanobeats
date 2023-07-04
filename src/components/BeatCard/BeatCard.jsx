@@ -4,7 +4,7 @@ import BeatDetail from "../BeatDetail/BeatDetail"
 import './BeatCard.css';
 import AWS from 'aws-sdk';
 
-export default function BeatCard({ beat, name, genre, tempo, songKey, description, price, category, id, url, coverArt}) {
+export default function BeatCard({ beat, name, artist, tempo, songKey, description, price, category, id, url, coverArt}) {
     console.log('BEATCARD ID', id)
 
     // const [beat, setBeat] = useState(null);
@@ -76,21 +76,21 @@ return (
       <div
         className="beat-card"
         style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
         }}
       >
             <div >
             <p className="card-title">{name}</p>
 
-            <p className="card-text">{genre}</p>
-            <p className="card-text">{tempo} bpm</p>
-            <p className="card-text">{songKey}</p>
+            <p className="card-text">{artist}</p>
+            {/* <p className="card-text">{tempo} bpm</p>
+            <p className="card-text">{songKey}</p> */}
             {/* <p className="card-info">Description: {description}</p> */}
             {/* <p className="card-info">Price: {price}</p> */}
             {/* <a href={url} className="card-info">Url</a> */}
-            <p className="card-text">Category: {category}</p>
+            {/* <p className="card-text">Category: {category}</p> */}
             {/* <p className="card-text"><button>Play
                 <audio src={url}></audio>
             </button></p> */}

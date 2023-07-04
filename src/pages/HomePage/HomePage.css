@@ -1,0 +1,49 @@
+.homepage {
+    opacity: 0;
+    transition: opacity 1s;
+    margin-top: 60px;
+  }
+  
+  .fade-in {
+    opacity: 0.8;
+  }
+  
+  .custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.imgur.com/X0BgQIu.png');
+    background-size: cover;
+    padding: 20px;
+    border-radius: 8px;
+    color: black;
+    z-index: 9999; /* Increase the z-index to ensure the modal is on top */
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    z-index: 9998; /* Set a lower z-index for the overlay */
+  }
+  
+  .modal-text {
+    color: white;
+  }
+  
+  .modal-button {
+    background-color: #18b15d;
+    color: white;
+    
+    
+  }
+  

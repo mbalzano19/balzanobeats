@@ -26,7 +26,7 @@ export default function NavBar({ user, setUser }) {
               </NavLink>
             </li>
             {user && (
-  <>
+        <>
     <li className="nav-item">
       <span className="nav-link"> | </span>
     </li>
@@ -35,12 +35,21 @@ export default function NavBar({ user, setUser }) {
         Add Beats
       </NavLink>
     </li>
-  </>
-)}
+        </>
+            )}
             <li className="nav-item">
               <span className="nav-link"> | </span>
             </li>
+            {/* <li className="nav-item">
+            <NavLink to="/beats/:userId" className="nav-link" activeClassName="active-link">
+                My Beats
+            </NavLink>
+        </li>
+                    <li className="nav-item">
+              <span className="nav-link"> | </span>
+            </li> */}
             <li className="nav-item">
+                
             {user ? (
             <NavLink to="/orders/new" className="nav-link" activeClassName="active-link">
                 Cart

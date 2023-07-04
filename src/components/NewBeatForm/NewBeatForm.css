@@ -1,0 +1,27 @@
+.form-container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-container label {
+    color: #333;
+  }
+  
+  .form-container input[type="text"],
+  .form-container input[type="number"],
+  .form-container select {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .form-container button[type="submit"] {
+    background-color: #18b15d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }

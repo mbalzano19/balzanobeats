@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 // import * as beatsAPI from '../../utilities/beats-api';
 import { Link, useNavigate } from 'react-router-dom';
 import * as ordersAPI from '../../utilities/orders-api';
@@ -26,13 +26,14 @@ export default function NewOrderPage({ beat, currentPage }) {
     }, [id, currentPage]);
   
     async function handleAddToOrder(beatId) {
-      alert(`Add item: ${beat.name}`);
+      alert(`${beat.name} has been added to your cart!`);
       const updatedCart = await ordersAPI.addItemToCart(beatId);
       console.log('UPDATEDCART', updatedCart.beatItems)
     //   updatedCart.beatItems.forEach((item) => {
     //     item.extPrice = item.qty * item.price;
     //   });
       setCart(updatedCart);
+      <Navigate to='/login'></Navigate>
     }
   
     async function handleChangeQty(cartId, beatId, newQty) {

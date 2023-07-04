@@ -169,7 +169,7 @@ export default function BeatDetail({ user }) {
             />
         </div>
             <p>Name: {beat.name}</p>
-            <p>Genre: {beat.genre}</p>
+            <p>Artist: {beat.artist}</p>
             <p>Tempo: {beat.tempo}</p>
             <p>Key: {beat.key}</p>
             <p>Price: {beat.price}</p>
