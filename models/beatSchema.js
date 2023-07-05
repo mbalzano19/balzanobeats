@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-// const url = require('mongoose-type-url')
 
 const beatSchema = new Schema({
     name: {
@@ -37,11 +36,6 @@ const beatSchema = new Schema({
         default: ''
     },
     category: {type: Schema.Types.ObjectId, ref: 'Category'},
-    // user: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User',
-    //     required: true
-    // },
 }, {
     timestamps: true
 })
