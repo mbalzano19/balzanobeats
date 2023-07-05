@@ -11,8 +11,8 @@ export default function NewOrderPage({ beat, currentPage }) {
     const [cart, setCart] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
-    console.log('CURRENTPAGETHING', currentPage)
-    console.log('BEAT IN NEW ORDER PAGE', beat)
+    // console.log('CURRENTPAGETHING', currentPage)
+    // console.log('BEAT IN NEW ORDER PAGE', beat)
   
   useEffect(() => {
     async function fetchData() {

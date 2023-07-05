@@ -22,7 +22,7 @@ const beatItemSchema = new Schema({
 })
 
 beatItemSchema.virtual('extPrice').get(function () {
-    console.log('this.beat.price', this)
+    // console.log('this.beat.price', this)
     return this.qty * this.price
 })
 

@@ -52,9 +52,9 @@ export default function NewBeatForm() {
         const imageFile = formData.coverArt
   
         const audioKey = `beats/${audioFile}`
-        console.log('AUDIOKEY', audioKey)
+        // console.log('AUDIOKEY', audioKey)
         const newAudioKey = audioKey.replace("C:\\fakepath\\", "")
-        console.log('NEWAUDIOKEY AFTER REPLACE', newAudioKey)
+        // console.log('NEWAUDIOKEY AFTER REPLACE', newAudioKey)
         await s3
           .upload({
             Bucket: bucketName,

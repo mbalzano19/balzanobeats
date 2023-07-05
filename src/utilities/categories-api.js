@@ -21,6 +21,6 @@ export async function getAll() {
 
 export async function getById(id) {
     const response = await sendRequest(`${BASE_URL}/${id}`)
-    console.log('RUSPONSE', response)
+    // console.log('RUSPONSE', response)
     return response
 }

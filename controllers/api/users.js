@@ -17,7 +17,7 @@ async function create(req, res) {
         const user = await User.create(req.body)
 
         const token = createJWT(user)
-        console.log('this is the token in signup', token)
+        // console.log('this is the token in signup', token)
         res.json(token)
 
     } catch (err) {
@@ -48,7 +48,7 @@ async function login(req, res) {
 }
 
 function checkToken(req, res) {
-    console.log('req.user', req.user)
+    // console.log('req.user', req.user)
     res.json(req.exp)
 }
 
@@ -56,7 +56,7 @@ function checkToken(req, res) {
 
 // this is called whenever we need to create a web token
 function createJWT(user) {
-    console.log('this is secret', process.env.SECRET)
+    // console.log('this is secret', process.env.SECRET)
     return jwt.sign(
         // data payload
         { user },
