@@ -7,7 +7,7 @@ BalzanoBeats is a market place for musical artists to find and purchase beats. I
 <br>
 
 ## Screenshots
-<br>
+
 
 #### Landing Page:
 <img src="https://i.imgur.com/ATXHow2.png">
