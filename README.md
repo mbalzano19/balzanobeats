@@ -4,7 +4,7 @@
 <!-- <br> -->
 BalzanoBeats is a market place for musical artists to find and purchase beats. In this beat store, you are able to view all of the beats that have been uploaded to the store, view the track details, and listen to the beats within the app. You can view all of the beats in the store without having an account. But once you create an account and login, you can add beats to your cart, as well as post your own beats to the site.
 
-<br>
+
 
 ## Screenshots
 
