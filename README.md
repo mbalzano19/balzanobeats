@@ -52,7 +52,7 @@ BalzanoBeats is a market place for musical artists to find and purchase beats. I
 
 ## Getting Started
 - [Click to open the BalzanoBeats Store](https://balzanobeats.onrender.com/)
-- [Trello Board](https://trello.com/b/0PYJ7imf/balzanobeats)
+- [Trello Board with ERD & Wireframes](https://trello.com/b/0PYJ7imf/balzanobeats)
 
 <br>
 
