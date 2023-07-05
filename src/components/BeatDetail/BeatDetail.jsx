@@ -131,52 +131,52 @@ export default function BeatDetail({ user }) {
   }
 
 return (
-<>
-<div className='detail-container'>
-    <div
-    className="detail-card"
-    style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    }}
-    >
-    <button
-        className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}
-        onClick={handleTogglePlay}
+    <>
+    <div className='detail-container'>
+        <div
+        className="detail-card"
+        style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}
         >
-        {isPlaying ? "Pause" : "Play"}
-    <h1 className='title'>{beat.name}</h1>
-    </button>
-    </div>
-    </div>
-    <div className="audio-player">
-    <div className="progress-bar">
-        <input
-        type="range"
-        min={0}
-        max={audioRef.current?.duration}
-        value={currentTime}
-        step={0.1}
-        onChange={handleSeek}
-        />
-    </div>
-        <p>Name: {beat.name}</p>
-        <p>Artist: {beat.artist}</p>
-        <p>Tempo: {beat.tempo}</p>
-        <p>Key: {beat.key}</p>
-        <p>Price: {beat.price}</p>
-        <p>Category: {beat.category}</p>
-    <p>Description: {beat.description}</p>
-    </div>
-    <audio
-    ref={audioRef}
-    src={url} 
-    onTimeUpdate={handleTimeUpdate}
-    ></audio>
+        <button
+            className={`play-pause-button ${isPlaying ? "playing" : "paused"}`}
+            onClick={handleTogglePlay}
+            >
+            {isPlaying ? "Pause" : "Play"}
+        <h1 className='title'>{beat.name}</h1>
+        </button>
+        </div>
+        </div>
+        <div className="audio-player">
+        <div className="progress-bar">
+            <input
+            type="range"
+            min={0}
+            max={audioRef.current?.duration}
+            value={currentTime}
+            step={0.1}
+            onChange={handleSeek}
+            />
+        </div>
+            <p>Name: {beat.name}</p>
+            <p>Artist: {beat.artist}</p>
+            <p>Tempo: {beat.tempo}</p>
+            <p>Key: {beat.key}</p>
+            <p>Price: {beat.price}</p>
+            <p>Category: {beat.category}</p>
+        <p>Description: {beat.description}</p>
+        </div>
+        <audio
+        ref={audioRef}
+        src={url} 
+        onTimeUpdate={handleTimeUpdate}
+        ></audio>
 
-    {user && <NewOrderPage beat={beat} />}
+        {user && <NewOrderPage beat={beat} />}
 
-</>
+    </>
 )
 }
