@@ -18,15 +18,12 @@ async function cart(req, res) {
 async function addToCart(req, res) {
   const cart = await Order.getCart(req.user._id)
   await cart.addItemToCart(req.params.id)
-  // console.log('caart in controllers addtocart', )
   res.json(cart)
 }
 
 // Updates an item's qty in the cart
 async function setItemQtyInCart(req, res) {
   const cart = await Order.findById(req.params.cartId)
-  // console.log('This is the cart in setItemQtyInCart', cart)
-  // console.log('This is the itemID in controller', req.params.beatId)
   await cart.setItemQty(req.params.beatId, req.body.newQty)
   res.json(cart)
 }

@@ -15,7 +15,6 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
       const beatCart = beats.find((beat) => beat._id === id)
       const fetchedCart = await ordersAPI.getCart()
 
-      // console.log('FETCHEDCART ORDER DETAIL', fetchedCart)
       setCart(fetchedCart)
       calculateCartPrice(fetchedCart)
     }
@@ -67,7 +66,6 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
     calculateCartPrice(finalCart)
   }
 
-  // console.log('cart right before orderDetail return', cart)
 return (
   <>
     <h1 className="cartheader">Cart</h1>

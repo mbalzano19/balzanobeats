@@ -4,7 +4,6 @@ import './BeatCard.css'
 import AWS from 'aws-sdk'
 
 export default function BeatCard({ beat, name, artist, tempo, songKey, description, price, category, id, url, coverArt}) {
-    // console.log('BEATCARD ID', id)
     const [image, setImage] = useState('')
 
 useEffect(() => {
@@ -37,8 +36,6 @@ useEffect(() => {
     getImageUrl()
   }, [beat])
 
-//   console.log('IMAGE IN BEAT CARD', image)
-
 return (
     <div className="card shadow  card-containers" key={id}>
         <div
@@ -58,4 +55,3 @@ return (
     </div>
 )
 }
-

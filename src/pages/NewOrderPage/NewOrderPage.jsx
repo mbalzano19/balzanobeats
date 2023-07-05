@@ -11,8 +11,6 @@ export default function NewOrderPage({ beat, currentPage }) {
     const [cart, setCart] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
-    // console.log('CURRENTPAGETHING', currentPage)
-    // console.log('BEAT IN NEW ORDER PAGE', beat)
   
   useEffect(() => {
     async function fetchData() {
@@ -28,14 +26,12 @@ export default function NewOrderPage({ beat, currentPage }) {
   async function handleAddToOrder(beatId) {
     alert(`${beat.name} has been added to your cart!`)
     const updatedCart = await ordersAPI.addItemToCart(beatId)
-    // console.log('UPDATEDCART', updatedCart.beatItems)
     setCart(updatedCart);
     <Navigate to='/login'></Navigate>
   }
   
   async function handleChangeQty(cartId, beatId, newQty) {
     const updatedCart = await ordersAPI.setItemQtyInCart(cartId, beatId, newQty)
-    console.log('handleChangeQuantity', updatedCart)
     setCart(updatedCart)
   }
 

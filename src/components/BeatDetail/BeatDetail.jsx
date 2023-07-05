@@ -126,13 +126,9 @@ export default function BeatDetail({ user }) {
     getImageUrl()
   }, [beat])
 
-  console.log('IMAGE URL', image)
-
   if (!beat) {
     return <p>Loading...</p>
   }
-
-//   console.log('beat.url', beat.url)
 
 return (
 <>

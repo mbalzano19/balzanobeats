@@ -52,9 +52,7 @@ export default function NewBeatForm() {
         const imageFile = formData.coverArt
   
         const audioKey = `beats/${audioFile}`
-        // console.log('AUDIOKEY', audioKey)
         const newAudioKey = audioKey.replace("C:\\fakepath\\", "")
-        // console.log('NEWAUDIOKEY AFTER REPLACE', newAudioKey)
         await s3
           .upload({
             Bucket: bucketName,
@@ -86,11 +84,8 @@ export default function NewBeatForm() {
           coverArt: newImageKey,
           category: formData.category,
         }
-        // console.log('FORM IN beatData', beatData)
   
         const response = await axios.post('https://balzanobeats-api.onrender.com/api/beats/new', beatData)
-        // console.log('Beat added:', response.data)
-        // console.log('beatURL,', beatData.url)
   
         setFormData({
           name: '',

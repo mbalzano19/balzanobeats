@@ -19,8 +19,7 @@ export default function BeatPage({ user }) {
     
       fetchBeats()
   }, [user])
-
-// console.log('beats in BeatPage', beats)
+  
 
   return (
     <>

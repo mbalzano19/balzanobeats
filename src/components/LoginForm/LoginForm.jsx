@@ -11,26 +11,18 @@ export default function LoginForm({ setUser }) {
     const navigate = useNavigate()
 
     function handleChange(evt) {
-        // this.setState({
-        //     [evt.target.name]: evt.target.value,
-        //     error: ''
-        // })
         setCredentials({ ...credentials, [evt.target.name]: evt.target.value })
         setError('')
     }
 
-    // handleSubmit
     async function handleSubmit(evt) {
         evt.preventDefault()
         
         try {
             const user = await login(credentials)
-            console.log('credentials in login', credentials)
             setUser(user)
             navigate('/')
         } catch {
-            // handle our errors
-            // this.setState({ error: 'Sign Up Failed - Try Again'})
             setError('Log In Failed - Try Again')
         }
     }

@@ -22,7 +22,6 @@ const beatItemSchema = new Schema({
 })
 
 beatItemSchema.virtual('extPrice').get(function () {
-    // console.log('this.beat.price', this)
     return this.qty * this.price
 })
 
@@ -69,13 +68,8 @@ orderSchema.statics.getCart = function(userId) {
 }
 
 orderSchema.methods.addItemToCart = async function(beatId) {
-    // console.log('BEATID in ORDER MODEL', beatId)
     const cart = this;
-    // console.log('const cart = this', cart)
     const beatItem = cart.beatItems.find(beatItem => beatItem._id.equals(beatId))
-
-    // console.log("BEATITEM IN ORDER MODEL", beatItem)
-    // console.log('beatItems length:', cart.beatItems.length);
   
     if (beatItem) {
       beatItem.qty++;
@@ -83,7 +77,6 @@ orderSchema.methods.addItemToCart = async function(beatId) {
       const Beat = mongoose.model('Beat');
 
       const beat = await Beat.findById(beatId);
-    //   console.log('beat in ORDER MODEL, after beat.findById', beat);
       cart.beatItems.push({ beat })
     }
     return cart.save();
@@ -92,7 +85,7 @@ orderSchema.methods.addItemToCart = async function(beatId) {
 orderSchema.methods.setItemQty = function(beatId, newQty) {
     const cart = this
     const beatItem = cart.beatItems.id(beatId);
-    // console.log('beatItem in Order Model', beatItem.id)
+
 
     if (beatItem && newQty <= 0) {
         beatItem.deleteOne()
