@@ -47,6 +47,7 @@ BalzanoBeats is a market place for musical artists to find and purchase beats. I
 - CSS
 - Bootstrap
 - Render
+- AWS S3
 
 <br>
 

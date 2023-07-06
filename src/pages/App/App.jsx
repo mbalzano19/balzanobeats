@@ -19,7 +19,7 @@ export default function App() {
   useEffect(() => {
     const fetchBeats = async () => {
       try {
-        const response = await beatsAPI.getAll(user._id)
+        const response = await beatsAPI.getAll()
 
         setBeats(response)
 
