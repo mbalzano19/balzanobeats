@@ -21,7 +21,7 @@ export default function LoginForm({ setUser }) {
         try {
             const user = await login(credentials)
             setUser(user)
-            navigate('/')
+            navigate('/beats')
         } catch {
             setError('Log In Failed - Try Again')
         }

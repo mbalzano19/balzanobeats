@@ -11,6 +11,8 @@ import BeatDetail from '../../components/BeatDetail/BeatDetail'
 import NewOrderPage from '../NewOrderPage/NewOrderPage'
 import { getUser } from '../../utilities/users-service'
 import { useLocation } from 'react-router-dom'
+import SignUpForm from '../../components/SignUpForm/SignUpForm'
+import LoginForm from '../../components/LoginForm/LoginForm'
 
 export default function App() {
   const [user, setUser] = useState(getUser())
