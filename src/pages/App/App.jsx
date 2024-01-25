@@ -50,6 +50,7 @@ return (
             path="/orders/new"
             element={<NewOrderPage beat={beats} currentPage={currentPage} />}
           />
+        {/* <Route path="/orders/checkout/session" /> */}
         </Routes>
       </>
     ) : (

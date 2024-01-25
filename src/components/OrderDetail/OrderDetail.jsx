@@ -9,6 +9,12 @@ export default function OrderDetail({beat, handleChangeQty, handleCheckout}) {
   const [cart, setCart] = useState(null)
   const [cartPrice, setCartPrice] = useState(0)
 
+  async function handleAddToCart(beatId) {
+    alert(`${cart.name} has been added to your cart!`);
+    const updatedCart = await ordersAPI.addItemToCart(beatId);
+    setCart(updatedCart);
+  }
+
   useEffect(() => {
     async function fetchData() {
       const beats = await beatsAPI.getAll(id)
@@ -137,7 +143,8 @@ return (
             <td colSpan="2" style={{ textAlign: 'right' }}>Order Total:</td>
             <td style={{ textAlign: 'center' }}>${cartPrice.toFixed(2)}</td>
           </tr>
-          <button>Checkout</button>
+          {!cart && <button onClick={handleAddToCart}>Add to Cart</button>}
+          <button onClick={handleCheckout}>Checkout</button>
           </tbody>
         </table>
       </div>

@@ -1,8 +1,11 @@
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN || 'http://localhost:3000';
+
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cors = require('cors')
+
 require('dotenv').config()
 require('./config/database')
 
@@ -33,13 +36,16 @@ app.use(cors({
 app.use(require('./config/checkToken'))
 
 const port = process.env.PORT || 3001;
+const { createCheckoutSession } = require('./controllers/api/payments')
+// setupPaymentRoutes(app);
 	
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/beats', require('./routes/api/beats'))
 app.use('/api/orders', require('./routes/api/orders'))
+app.use('/api/payments', require('./routes/api/payments'))
 
-
+app.post('/api/checkout/session', createCheckoutSession);
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
