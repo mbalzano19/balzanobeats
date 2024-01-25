@@ -36,7 +36,7 @@ app.use(cors({
 app.use(require('./config/checkToken'))
 
 const port = process.env.PORT || 3001;
-const { createCheckoutSession } = require('./controllers/api/payments')
+// const { createCheckoutSession } = require('./controllers/api/payments')
 // setupPaymentRoutes(app);
 	
 // Put API routes here, before the "catch all" route
@@ -45,7 +45,7 @@ app.use('/api/beats', require('./routes/api/beats'))
 app.use('/api/orders', require('./routes/api/orders'))
 app.use('/api/payments', require('./routes/api/payments'))
 
-app.post('/api/checkout/session', createCheckoutSession);
+// app.post('/api/checkout/session', createCheckoutSession);
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

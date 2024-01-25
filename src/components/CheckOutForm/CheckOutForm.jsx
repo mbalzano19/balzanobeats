@@ -43,6 +43,7 @@ const CheckoutForm = ({ cart, handleCheckout }) => {
     handleCheckout(); // Redirect or handle the success case
   };
 
+
   return (
     <form onSubmit={handleSubmit}>
       <label>

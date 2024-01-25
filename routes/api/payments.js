@@ -17,4 +17,6 @@ router.post('/cart/payment', async (req, res) => {
   }
 });
 
+router.post('/checkout/session', paymentsController.createCheckoutSession)
+
 module.exports = router;

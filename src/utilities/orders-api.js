@@ -1,7 +1,7 @@
 import sendRequest from './send-request'
 
-// const BASE_URL = '/api/orders'
-const BASE_URL = 'https://balzanobeats-api.onrender.com/api/orders'
+const BASE_URL = '/api/orders'
+// const BASE_URL = 'https://balzanobeats-api.onrender.com/api/orders'
 
 
 export function getCart() {
@@ -41,5 +41,7 @@ export function createStripeCheckoutSession(beatsInCart) {
     return total + (beat.beat.price || 0) * (beat.qty || 1);
   }, 0);
   console.log('totalAmount', totalAmount)
+  // const doubleCheck = sendRequest(`${BASE_URL}/checkout/session`, 'POST', { finalCart, totalAmount })
+  // console.log('doublecheck', doubleCheck)
   return sendRequest(`${BASE_URL}/checkout/session`, 'POST', { finalCart, totalAmount });
 }

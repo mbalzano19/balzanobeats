@@ -105,8 +105,10 @@ export default function NewOrderPage(props) {
       console.log('cart', cart)
       const beatsInCart = cart.beats
       console.log('props', props)
+      console.log('About to make API call for checkout session');
       const session = await ordersAPI.createStripeCheckoutSession(cart);
-  
+      console.log('API call for checkout session completed', session);
+      
       // Redirect to the Stripe Checkout page
       const stripe = await stripePromise;
       const { error } = await stripe.redirectToCheckout({
